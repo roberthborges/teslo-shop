@@ -8,13 +8,16 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { FilesService } from './files.service';
 import { ConfigService } from '@nestjs/config';
-import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { fileFilter, fileNamer } from './helpers';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 import { diskStorage } from 'multer';
+import { FilesService } from './files.service';
+import { fileFilter, fileNamer } from './helpers';
+import { FileUploadDto } from './dto/file-upload.dto';
 
+@ApiTags('Files - Get and Upload Files')
 @Controller('files')
 export class FilesController {
   constructor(
@@ -43,6 +46,10 @@ export class FilesController {
       }),
     }),
   )
+  @ApiBody({
+    description: 'File data to be uploaded',
+    type: FileUploadDto,
+  })
   uploadProductImage(@UploadedFile() file: Express.Multer.File) {
     if (!file) {
       throw new BadRequestException('Make sure that the file is an image');

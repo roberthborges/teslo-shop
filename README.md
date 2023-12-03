@@ -4,7 +4,7 @@
 
 ## Teslo API
 
-1. Colnar proyecto
+1. Clonar proyecto
 2. ```npm install```
 3. Clonar el archivo ```.env.teamplate``` y renombrar a ```.env```
 4. Cambiar las variables de entorno
