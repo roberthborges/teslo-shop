@@ -94,7 +94,9 @@ export class ProductsService {
 
     // create query runner
     const queryRunner = this.dataSource.createQueryRunner();
+
     await queryRunner.connect();
+
     await queryRunner.startTransaction();
 
     try {
